@@ -48,60 +48,33 @@ if selected2 == 'Modelling':
     st.write('Modelling')
     pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
 
-    # if pilih == 'Balanced Data':
-    #     st.title('Nilai Akurasi 52,5 %')
-    #     st.write('Performa model dengan kelas seimbang (Balanced data)')
-    #     st.write('|           | Precision | Recall | F1-Score | Support |')
-    #     st.write('|-----------|-----------|--------|----------|---------|')
-    #     st.write('| Class 0   | 0.99      | 1.00   | 0.99     | 95      |')
-    #     st.write('| Class 1   | 1.00      | 1.00   | 1.00     | 73      |')
-    #     st.write('| Class 2   | 1.00      | 0.99   | 0.99     | 90      |')
-    #     st.write('| Accuracy  |           |        | 1.00     | 258     |')
-    #     st.write('| Macro Avg | 1.00      | 1.00   | 1.00     | 258     |')
-    #     st.write('| Weighted Avg | 1.00   | 1.00   | 1.00     | 258     |')
-
-    # elif pilih == 'Imbalanced Data':
-    #     st.title('Nilai Akurasi 88 %')
-    #     st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
-    #     st.write('|           | Precision | Recall | F1-Score | Support |')
-    #     st.write('|-----------|-----------|--------|----------|---------|')
-    #     st.write('| Class 0   | 0.98      | 1.00   | 0.99     | 44      |')
-    #     st.write('| Class 1   | 1.00      | 1.00   | 1.00     | 92      |')
-    #     st.write('| Class 2   | 1.00      | 0.99   | 0.99     | 76      |')
-    #     st.write('| Accuracy  |           |        | 1.00     | 212     |')
-    #     st.write('| Macro Avg | 0.99      | 1.00   | 0.99     | 212     |')
-    #     st.write('| Weighted Avg | 1.00   | 1.00   | 1.00     | 212     |')
-
-pilih = "Balanced Data"  # Ganti dengan nilai yang sesuai
-st.title('Performa Model')
-
-if pilih == 'Balanced Data':
-    st.title('Nilai Akurasi 52,5 %')
-    st.write('Performa model dengan kelas seimbang (Balanced data)')
-
-    data4 = {
-        '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
-        'Precision': [0.99, 1.00, 1.00, '', 1.00, 1.00],
-        'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
-        'F1-Score': [0.99, 1.00, 0.99, 1.00, 1.00, 1.00],
-        'Support': [95, 73, 90, 258, 258, 258]
-    }
-
-    table = st.table(data4)
-
-elif pilih == 'Imbalanced Data':
-    st.title('Nilai Akurasi 88 %')
-    st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
-
-    data5 = {
-        '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
-        'Precision': [0.98, 1.00, 1.00, '', 0.99, 1.00],
-        'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
-        'F1-Score': [0.99, 1.00, 0.99, 1.00, 0.99, 1.00],
-        'Support': [44, 92, 76, 212, 212, 212]
-    }
-
-    table = st.table(data5)
+    if pilih == 'Balanced Data':
+        st.title('Nilai Akurasi 52,5 %')
+        st.write('Performa model dengan kelas seimbang (Balanced data)')
+    
+        data4 = {
+            '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
+            'Precision': [0.99, 1.00, 1.00, '', 1.00, 1.00],
+            'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
+            'F1-Score': [0.99, 1.00, 0.99, 1.00, 1.00, 1.00],
+            'Support': [95, 73, 90, 258, 258, 258]
+        }
+    
+         table = st.table(data4)
+    
+    elif pilih == 'Imbalanced Data':
+         st.title('Nilai Akurasi 88 %')
+         st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
+    
+         data5 = {
+             '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
+             'Precision': [0.98, 1.00, 1.00, '', 0.99, 1.00],
+             'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
+             'F1-Score': [0.99, 1.00, 0.99, 1.00, 0.99, 1.00],
+             'Support': [44, 92, 76, 212, 212, 212]
+         }
+    
+         table = st.table(data5)
 
 
 if selected2 == 'Model Validation':
