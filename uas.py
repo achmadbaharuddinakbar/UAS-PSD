@@ -45,6 +45,7 @@ if selected2 == 'Processing data':
 # Page: Modelling
 if selected2 == 'Modelling':
     st.title('Modelling')
+    st.write('Modelling')
     pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
 
     if pilih == 'Balanced Data':
