@@ -8,13 +8,13 @@ import streamlit as st
 
 #navigasi sidebar
 # horizontal menu
-selected2 = option_menu(None, ["Data", "Procecing data", "Modelling", 'Implementasi'], 
+selected2 = option_menu(None, ["Data", "Procecing data", "Modelling"], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 selected2
 
 #halaman Data
-if (selected2 == 'Data') :
+if (selected2 == 'Dataset') :
     st.title('Deskripsi data')
 
     st.write("Ini adalah contoh data yang tersedia dalam aplikasi Streamlit.")
@@ -28,18 +28,18 @@ if (selected2 == 'Data') :
     st.write("- Blood Pressure Levels (BP)")
     st.write("- Cholesterol Levels")
     st.write("- Na to Potassium Ration")
-    data = pd.read_csv('drug200.csv')
+    data = pd.read_csv('milknew.csv')
     st.write(data)
 
 
 
 #halaman procecing data 
-if (selected2 == 'Procecing data') :
-    st.title('Procecing Data')
+if (selected2 == 'Processing data') :
+    st.title('Processing Data')
 
-    st.write("Saya Melakukan Pre-processing data dengan metode Min - Max Scalar")
+    st.write("Kami Melakukan Pre-processing data dengan metode Min - Max Scalar")
     st.write("Dengan Hasil Processing Data")
-    data = pd.read_csv('drug_preprocessed.csv')
+    data = pd.read_csv('milk_quality_non-imbalance.csv')
     st.write(data)
 
 #halaman modelling
@@ -62,63 +62,63 @@ if (selected2 == 'Modelling'):
 # Load the saved model
 
 # Load the saved model
-if (selected2 == 'Implementasi'):
-    st.title('Implementasi')
+# if (selected2 == 'Implementasi'):
+#     st.title('Implementasi')
 
 
-    model_filename = 'loan.pkl'
-    with open(model_filename, 'rb') as file:
-        model = pickle.load(file)
+#     model_filename = 'loan.pkl'
+#     with open(model_filename, 'rb') as file:
+#         model = pickle.load(file)
 
-    # Create a function to preprocess the input data
-    def preprocess_input(data):
-        # Convert the input data into a DataFrame
-        df = pd.DataFrame(data, index=[0])
+#     # Create a function to preprocess the input data
+#     def preprocess_input(data):
+#         # Convert the input data into a DataFrame
+#         df = pd.DataFrame(data, index=[0])
         
-        # Standarisasi fitur
-        scaler = StandardScaler()
-        scaler.fit(df)  # Fit the scaler on the input data
-        df_std = scaler.transform(df)
+#         # Standarisasi fitur
+#         scaler = StandardScaler()
+#         scaler.fit(df)  # Fit the scaler on the input data
+#         df_std = scaler.transform(df)
         
-        return df_std
+#         return df_std
 
-    # Create the Streamlit web app
-    def main():
-        st.title('Drug Type')
+#     # Create the Streamlit web app
+#     def main():
+#         st.title('Drug Type')
 
-        # Create input fields for the features
-        age = st.number_input('Age', min_value=0, max_value=100, value=0)
-        sex = st.radio('Sex', ['Male', 'Female'])
-        blood_pressure = st.number_input('Blood Pressure (BP)', min_value=0, max_value=200, value=0)
-        cholesterol = st.number_input('Cholesterol', min_value=0, value=0)
-        sodium_potassium = st.number_input('Na to K (Sodium to Potassium ratio)', min_value=0, value=0)
+#         # Create input fields for the features
+#         age = st.number_input('Age', min_value=0, max_value=100, value=0)
+#         sex = st.radio('Sex', ['Male', 'Female'])
+#         blood_pressure = st.number_input('Blood Pressure (BP)', min_value=0, max_value=200, value=0)
+#         cholesterol = st.number_input('Cholesterol', min_value=0, value=0)
+#         sodium_potassium = st.number_input('Na to K (Sodium to Potassium ratio)', min_value=0, value=0)
         
-        # Create a dictionary with the input data
-        input_data = {
-            'Age': age,
-            'Sex': sex,
-            'Blood Preassure (BP)': blood_pressure,
-            'Cholestrol': cholesterol,
-            'Na to K (Sodium to Potassium rate)': sodium_potassium,
-        }
+#         # Create a dictionary with the input data
+#         input_data = {
+#             'Age': age,
+#             'Sex': sex,
+#             'Blood Preassure (BP)': blood_pressure,
+#             'Cholestrol': cholesterol,
+#             'Na to K (Sodium to Potassium rate)': sodium_potassium,
+#         }
 
-        # Perform prediction when the button is pressed
-        if st.button('Hitung'):
-        # Determine the drug type based on the input features
-            if age <= 16:
-                drug_type = 'Drug_X'
-            elif age > 16 and sex == 'Male' and blood_pressure < 1 and cholesterol < 1 and sodium_potassium < 20.037:
-                drug_type = 'Drug_A'
-            elif age > 16 and sex == 'Female' and blood_pressure >= 1 and cholesterol >= 1 and sodium_potassium >= 20.037:
-                drug_type = 'drug_type_3'
-            elif age > 16 and sex == 'Male' and blood_pressure >= 1 and cholesterol >= 1 and sodium_potassium < 20.037:
-                drug_type = 'drug_type_4'
-            elif age > 16 and sex == 'Female' and blood_pressure < 1 and cholesterol < 1 and sodium_potassium >= 20.037:
-                drug_type = 'Drug_Y'
-            else:
-                drug_type = 'Drug_C'
+#         # Perform prediction when the button is pressed
+#         if st.button('Hitung'):
+#         # Determine the drug type based on the input features
+#             if age <= 16:
+#                 drug_type = 'Drug_X'
+#             elif age > 16 and sex == 'Male' and blood_pressure < 1 and cholesterol < 1 and sodium_potassium < 20.037:
+#                 drug_type = 'Drug_A'
+#             elif age > 16 and sex == 'Female' and blood_pressure >= 1 and cholesterol >= 1 and sodium_potassium >= 20.037:
+#                 drug_type = 'drug_type_3'
+#             elif age > 16 and sex == 'Male' and blood_pressure >= 1 and cholesterol >= 1 and sodium_potassium < 20.037:
+#                 drug_type = 'drug_type_4'
+#             elif age > 16 and sex == 'Female' and blood_pressure < 1 and cholesterol < 1 and sodium_potassium >= 20.037:
+#                 drug_type = 'Drug_Y'
+#             else:
+#                 drug_type = 'Drug_C'
 
-            st.write("Predicted Drug Type:", drug_type)
+#             st.write("Predicted Drug Type:", drug_type)
 
             # # Display the prediction
             # if prediction[0] == 0:
