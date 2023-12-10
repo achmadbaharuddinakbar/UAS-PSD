@@ -30,31 +30,46 @@ if selected2 == 'Dataset':
 
 # Page: Processing data
 if selected2 == 'Processing data':
-    st.title('Processing Data')
-    st.write("Kami Melakukan Pre-processing data dengan metode Min - Max Scalar")
-    st.write("Dengan Hasil Processing Data")
+    st.title('Processing Data imbalanced (Tidak Seimbang)')
+    st.write("Pre-processing imbalanced data")
+    st.write("Dengan Hasil :")
     data2 = pd.read_csv('milk_quality_non-imbalance.csv')
     st.write(data2)
     
     st.title('Processing Data')
-    st.write("Kami Melakukan Pre-processing data dengan metode Min - Max Scalar")
-    st.write("Dengan Hasil Processing Data")
+    st.write("Pre-processing balanced Data")
+    st.write("Dengan Hasil :")
     data3 = pd.read_csv('milk_quality_imbalance.csv')
     st.write(data3)
 
 # Page: Modelling
 if selected2 == 'Modelling':
     st.title('Modelling')
-    pilih = st.radio('Pilih', ('Naive Bayes', 'Decision Tree', 'KNN', 'ANN'))
+    pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
 
-    if pilih == 'Naive Bayes':
+    if pilih == 'Balanced Data':
         st.title(' Nilai Akurasi 52,5 %')
-    elif pilih == 'Decision Tree':
+        st.write('Performa model dengan kelas seimbang (Balanced data)')
+        st.write('            precision    recall  f1-score   support')
+
+        st.write('       0       0.99      1.00      0.99        95')
+        st.write('       1       1.00      1.00      1.00        73')
+        st.write('       2       1.00      0.99      0.99        90')
+        st.write('accuracy                           1.00       258')
+        st.write('macro avg      1.00      1.00      1.00       258')
+        st.write('weighted avg   1.00      1.00      1.00       258')
+
+    elif pilih == 'Imbalanced Data':
         st.title(' Nilai Akurasi 88 %')
-    elif pilih == 'KNN':
-        st.title(' Nilai Akurasi 77,5 %')
-    elif pilih == 'ANN':
-        st.title(' Nilai Akurasi 62,5%')
+        st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
+        st.write('            precision    recall  f1-score   support')
+
+        st.write('       0       0.98      1.00      0.99        44')
+        st.write('       1       1.00      1.00      1.00        92')
+        st.write('       2       1.00      0.99      0.99        76')
+        st.write('accuracy                           1.00       212')
+        st.write('macro avg      0.99      1.00      0.99       212')
+        st.write('weighted avg   1.00      1.00      1.00       212')
         
 if selected2 == 'Model Validation':
     st.title('Model Validation')
