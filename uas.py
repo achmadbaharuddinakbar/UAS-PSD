@@ -178,5 +178,5 @@ if (selected2 == 'Modelling'):
 #         st.write("Hasil Perhitungan:")
 #         st.write(result)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
