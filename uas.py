@@ -41,6 +41,15 @@ if (selected2 == 'Processing data') :
     st.write("Dengan Hasil Processing Data")
     data = pd.read_csv('milk_quality_non-imbalance.csv')
     st.write(data)
+    
+# #halaman procecing data 
+# if (selected2 == 'Processing data') :
+    st.title('Processing Data')
+
+    st.write("Kami Melakukan Pre-processing data dengan metode Min - Max Scalar")
+    st.write("Dengan Hasil Processing Data")
+    data2 = pd.read_csv('milk_quality_imbalance.csv')
+    st.write(data2)
 
 #halaman modelling
 if (selected2 == 'Modelling'):
