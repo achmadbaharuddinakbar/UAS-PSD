@@ -60,7 +60,7 @@ if selected2 == 'Modelling':
             'Support': [95, 73, 90, 258, 258, 258]
         }
     
-         table = st.table(data4)
+        table = st.table(data4)
     
     elif pilih == 'Imbalanced Data':
          st.title('Nilai Akurasi 88 %')
