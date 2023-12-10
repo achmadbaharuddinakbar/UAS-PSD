@@ -49,28 +49,28 @@ if selected2 == 'Modelling':
     pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
 
     if pilih == 'Balanced Data':
-        st.title(' Nilai Akurasi 52,5 %')
+        st.title('Nilai Akurasi 52,5 %')
         st.write('Performa model dengan kelas seimbang (Balanced data)')
-        st.write('            precision    recall  f1-score   support')
-
-        st.write('       0       0.99      1.00      0.99        95')
-        st.write('       1       1.00      1.00      1.00        73')
-        st.write('       2       1.00      0.99      0.99        90')
-        st.write('accuracy                           1.00       258')
-        st.write('macro avg      1.00      1.00      1.00       258')
-        st.write('weighted avg   1.00      1.00      1.00       258')
+        st.write('|           | Precision | Recall | F1-Score | Support |')
+        st.write('|-----------|-----------|--------|----------|---------|')
+        st.write('| Class 0   | 0.99      | 1.00   | 0.99     | 95      |')
+        st.write('| Class 1   | 1.00      | 1.00   | 1.00     | 73      |')
+        st.write('| Class 2   | 1.00      | 0.99   | 0.99     | 90      |')
+        st.write('| Accuracy  |           |        | 1.00     | 258     |')
+        st.write('| Macro Avg | 1.00      | 1.00   | 1.00     | 258     |')
+        st.write('| Weighted Avg | 1.00   | 1.00   | 1.00     | 258     |')
 
     elif pilih == 'Imbalanced Data':
-        st.title(' Nilai Akurasi 88 %')
+        st.title('Nilai Akurasi 88 %')
         st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
-        st.write('            precision    recall  f1-score   support')
-
-        st.write('       0       0.98      1.00      0.99        44')
-        st.write('       1       1.00      1.00      1.00        92')
-        st.write('       2       1.00      0.99      0.99        76')
-        st.write('accuracy                           1.00       212')
-        st.write('macro avg      0.99      1.00      0.99       212')
-        st.write('weighted avg   1.00      1.00      1.00       212')
+        st.write('|           | Precision | Recall | F1-Score | Support |')
+        st.write('|-----------|-----------|--------|----------|---------|')
+        st.write('| Class 0   | 0.98      | 1.00   | 0.99     | 44      |')
+        st.write('| Class 1   | 1.00      | 1.00   | 1.00     | 92      |')
+        st.write('| Class 2   | 1.00      | 0.99   | 0.99     | 76      |')
+        st.write('| Accuracy  |           |        | 1.00     | 212     |')
+        st.write('| Macro Avg | 0.99      | 1.00   | 0.99     | 212     |')
+        st.write('| Weighted Avg | 1.00   | 1.00   | 1.00     | 212     |')
         
 if selected2 == 'Model Validation':
     st.title('Model Validation')
