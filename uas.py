@@ -10,7 +10,7 @@ selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model
 # Page: Dataset
 if selected2 == 'Dataset':
     st.title('Deskripsi data')
-    
+    st.write('Deskripsi data')
     data1 = pd.read_csv('milknew.csv')
     st.write(data1)
 
