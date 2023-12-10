@@ -79,7 +79,7 @@ if pilih == 'Balanced Data':
     st.title('Nilai Akurasi 52,5 %')
     st.write('Performa model dengan kelas seimbang (Balanced data)')
 
-    data = {
+    data4 = {
         '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
         'Precision': [0.99, 1.00, 1.00, '', 1.00, 1.00],
         'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
@@ -87,13 +87,13 @@ if pilih == 'Balanced Data':
         'Support': [95, 73, 90, 258, 258, 258]
     }
 
-    table = st.table(data)
+    table = st.table(data4)
 
 elif pilih == 'Imbalanced Data':
     st.title('Nilai Akurasi 88 %')
     st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
 
-    data = {
+    data5 = {
         '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
         'Precision': [0.98, 1.00, 1.00, '', 0.99, 1.00],
         'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
@@ -101,7 +101,7 @@ elif pilih == 'Imbalanced Data':
         'Support': [44, 92, 76, 212, 212, 212]
     }
 
-    table = st.table(data)
+    table = st.table(data5)
 
 
 if selected2 == 'Model Validation':
