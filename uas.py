@@ -94,8 +94,25 @@ if selected2 == 'Model Validation':
          table = st.table(data6)
 
     st.write('NB: Variabel Taste telah dihapus karena memiliki nilai information gain terkecil yaitu sebesar 0.04, yang artinya variabel tersebut tidak memberikan informasi yang signifikan untuk membedakan kelas target.')
-    
 
+    st.title('Hasil Memprediksi Target Menggunakan Model Terlatih')
+    
+    data7 = {
+             'Susu': [' A', ' B', ' C'],
+             'PH': [6.8, 6.5, 6.5],
+             'Temperature': [45, 40, 45.0],
+             'Odor': [1, 1, 0],
+             'Fat': [1, 0, 0],
+             'Tutbidity': [1, 1, 0],
+             'Colour': [255, 255, 255],
+             'Prediction': [0, 1, 2],
+         }
+    
+         table = st.table(data7)
+
+    st.write('Susu A diprediksi memiliki kualitas 0 (High)')
+    st.write('Susu B diprediksi memiliki kualitas 1 (Low)')
+    st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
 
 
 # Page: Implementasi
