@@ -58,7 +58,7 @@ if selected2 == 'Modelling':
         st.write('       2       1.00      0.99      0.99        90')
         st.write('accuracy                           1.00       258')
         st.write('macro avg      1.00      1.00      1.00       258')
-        st.write('weighted avg   1.00      1.00      1.00       258')
+        st.write('weighted avg   1.00      1.00      1.00       258')
 
     elif pilih == 'Imbalanced Data':
         st.title(' Nilai Akurasi 88 %')
@@ -70,7 +70,7 @@ if selected2 == 'Modelling':
         st.write('       2       1.00      0.99      0.99        76')
         st.write('accuracy                           1.00       212')
         st.write('macro avg      0.99      1.00      0.99       212')
-        st.write('weighted avg   1.00      1.00      1.00       212')
+        st.write('weighted avg   1.00      1.00      1.00       212')
         
 if selected2 == 'Model Validation':
     st.title('Model Validation')
