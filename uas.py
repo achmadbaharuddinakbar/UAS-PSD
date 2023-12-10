@@ -10,7 +10,6 @@ selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model
 # Page: Dataset
 if selected2 == 'Dataset':
     st.title('Deskripsi data')
-    st.write('Deskripsi data')
     st.write('Untuk mengetahui Kualitas pada Susu')
     st.write('Data yang saya gunakan disini yaitu tentang Prediksi Kualitas Susu yang saya dapatkan dari kaggle : https://www.kaggle.com/datasets/cpluzshrijayan/milkquality')
     st.write('Data Kualitas Susu ini merupakan Type Data Numerical.')
