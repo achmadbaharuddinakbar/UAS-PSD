@@ -91,7 +91,7 @@ if selected2 == 'Model Validation':
              'Colour': [255, 255, 255],
          }
     
-         table = st.table(data6)
+             table = st.table(data6)
 
     st.write('NB: Variabel Taste telah dihapus karena memiliki nilai information gain terkecil yaitu sebesar 0.04, yang artinya variabel tersebut tidak memberikan informasi yang signifikan untuk membedakan kelas target.')
 
