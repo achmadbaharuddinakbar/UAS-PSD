@@ -8,7 +8,7 @@ selected2 = st.sidebar.selectbox("Navigation", ["Dataset", "Processing data", "M
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 # Page: Dataset
-if selected2 == 'Dataset':
+if (selected2 == 'Dataset') :
     st.title('Deskripsi data')
     st.write('Untuk mengetahui Kualitas pada Susu')
     st.write('Data yang saya gunakan disini yaitu tentang Prediksi Kualitas Susu yang saya dapatkan dari kaggle : https://www.kaggle.com/datasets/cpluzshrijayan/milkquality')
@@ -29,7 +29,7 @@ if selected2 == 'Dataset':
     st.write(data1)
 
 # Page: Processing data
-if selected2 == 'Processing data':
+if (selected2 == 'Processing data') :
     st.title('Processing Data imbalanced (Tidak Seimbang)')
     st.write("Pre-processing imbalanced data")
     st.write("Dengan Hasil :")
@@ -60,7 +60,7 @@ if selected2 == 'Processing data':
 
 
 # Page: Modelling
-if selected2 == 'Modelling':
+if (selected2 == 'Modelling') :
     st.title('Modelling')
     st.write('Modelling')
     pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
@@ -94,7 +94,7 @@ if selected2 == 'Modelling':
          table = st.table(data5)
 
 
-if selected2 == 'Model Validation':
+if (selected2 == 'Model Validation') :
     st.title('Model Validation')
     st.write('Selanjutnya menguji model dengan memprediksikan kualitas suatu susu dengan spesifikasi berikut:')
     
@@ -133,7 +133,10 @@ if selected2 == 'Model Validation':
 
 
 # Page: Implementasi
-if selected2 == 'Implementasi':
+if (selected2 == 'Implementasi') :
+    st.title('Klasifikasi Kualitas Susu')
+    st.write('Untuk mengetahui Kualitas pada Susu')
+
     
     col1, col2, col3 = st.columns(3)
 
