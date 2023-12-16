@@ -3,12 +3,12 @@ import pandas as pd
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
-selected2 = st.sidebar.selectbox("Navigation", ["Dataset", "Processing data", "Modelling", "Model Validation", "Implementasi", "About Us"])
+selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
     icons=['house', 'cloud-upload', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 # Page: Dataset
-if  selected2 == 'Dataset' :
+if (selected2 == 'Dataset') :
     st.title('Deskripsi data')
     st.write('Untuk mengetahui Kualitas pada Susu')
     st.write('Data yang saya gunakan disini yaitu tentang Prediksi Kualitas Susu yang saya dapatkan dari kaggle : https://www.kaggle.com/datasets/cpluzshrijayan/milkquality')
@@ -29,7 +29,7 @@ if  selected2 == 'Dataset' :
     st.write(data1)
 
 # Page: Processing data
-if  selected2 == 'Processing data' :
+if (selected2 == 'Processing data') :
     st.title('Processing Data imbalanced (Tidak Seimbang)')
     st.write("Pre-processing imbalanced data")
     st.write("Dengan Hasil :")
@@ -94,7 +94,7 @@ if  selected2 == 'Modelling' :
          table = st.table(data5)
 
 
-if  selected2 == 'Model Validation' :
+if (selected2 == 'Model Validation') :
     st.title('Model Validation')
     st.write('Selanjutnya menguji model dengan memprediksikan kualitas suatu susu dengan spesifikasi berikut:')
     
@@ -133,7 +133,7 @@ if  selected2 == 'Model Validation' :
 
 
 # Page: Implementasi
-if  selected2 == 'Implementasi' :
+if (selected2 == 'Implementasi') :
     st.title('Klasifikasi Kualitas Susu')
     st.write('Untuk mengetahui Kualitas pada Susu')
 
@@ -193,7 +193,7 @@ if  selected2 == 'Implementasi' :
             st.write('ISI KOLOM TERLEBIH DAHULU')
 
             
-if  selected2 == 'About Us'  :
+if (selected2 == 'About Us')  :
     st.title('Kelompok 7')
     st.write('Mata Kuliah : Proyek Sains Data (C)')
 
