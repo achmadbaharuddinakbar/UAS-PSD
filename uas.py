@@ -116,7 +116,7 @@ if selected2 == 'Model Validation':
 
 
 # Page: Implementasi
-if (selected == 'Implementasi') :
+if (selected2 == 'Implementasi') :
     st.title('Klasifikasi Kualitas Susu')
     st.write('Untuk mengetahui Kualitas pada Susu')
    
@@ -171,7 +171,7 @@ if (selected == 'Implementasi') :
         else:
             st.write('ISI KOLOM TERLEBIH DAHULU')
             
-if (selected == 'About Us') :
+if (selected2 == 'About Us') :
     st.title('Kelompok 7')
     st.write('Mata Kuliah : Proyek Sains Data (C)')
 
