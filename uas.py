@@ -176,11 +176,9 @@ if (selected2 == 'About Us') :
     st.write('Mata Kuliah : Proyek Sains Data (C)')
 
     data8 = {
-                 'Nama :': [' Nim :'],
-                 'Achamad Baharudin Akbar': [210411100001],
-                 'Mohammad Iqal Surya Ramadhan': [210411100002],
-                 'Arif Hidayahtullah': [210411100012],
-                 'Ainur Rifqi': [210411100236],
+                 '': [' Nim :'],
+                 'Nama Lengkap': [Achmad Baharudin Akbar, Mohammad Iqbal Surya Ramadhan, Arif Hidayah, Ainur Rifqi],
+                 'Nim': [210411100001, 210411100002, 210411100012, 210411100236],
     }
         
     table = st.table(data8)
