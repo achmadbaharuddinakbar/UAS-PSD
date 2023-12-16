@@ -176,7 +176,7 @@ if (selected2 == 'About Us') :
     st.write('Mata Kuliah : Proyek Sains Data (C)')
 
     data8 = {
-                 '': [' Nim :'],
+                 '': [' A','B'],
                  'Nama Lengkap': [Achmad Baharudin Akbar, Mohammad Iqbal Surya Ramadhan, Arif Hidayah, Ainur Rifqi],
                  'Nim': [210411100001, 210411100002, 210411100012, 210411100236],
     }
