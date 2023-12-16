@@ -182,7 +182,7 @@ if (selected2 == 'Implementasi') :
     
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
             import pickle
-            with open('decision_tree_model.pkl', 'rb') as read:
+            with open('milk.pkl', 'rb') as read:
                 decision_tree_model = pickle.load(read)
     
             # Remove 'taste' column from the input features
