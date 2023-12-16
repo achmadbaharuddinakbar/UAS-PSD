@@ -134,7 +134,25 @@ if selected2 == 'Model Validation':
 
 # Page: Implementasi
 if selected2 == 'Implementasi':
-    # ... (same as your existing code)
+    
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        ph = st.number_input('Silahkan Masukkan pH:')
+        temprature = st.number_input('Silahkan Masukkan Suhu:', 0)
+
+    with col2:
+        list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
+        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
+        list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
+        fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
+
+    with col3:
+        list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
+        turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
+        colour = st.number_input('Silahkan Masukkan Warna:', 0)
+
+    button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
     if button:
         if odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
