@@ -116,7 +116,7 @@ if selected2 == 'Model Validation':
 
 
 # Page: Implementasi
-if (selected == 'Implementasi') :
+ if (selected == 'Implementasi') :
     st.title('Klasifikasi Kualitas Susu')
     st.write('Untuk mengetahui Kualitas pada Susu')
    
