@@ -36,11 +36,28 @@ if selected2 == 'Processing data':
     data2 = pd.read_csv('milk_quality_non-imbalance.csv')
     st.write(data2)
     
+    # Tombol unduh untuk data tidak seimbang
+    st.download_button(
+        label="Unduh Data Tidak Seimbang",
+        data=data2.to_csv(index=False),
+        file_name="milk_quality_non-imbalance.csv",
+        key="download_non_imbalance_data",
+    )
+
     st.title('Processing Data')
     st.write("Pre-processing balanced Data")
     st.write("Dengan Hasil :")
     data3 = pd.read_csv('milk_quality_imbalance.csv')
     st.write(data3)
+    
+    # Tombol unduh untuk data seimbang
+    st.download_button(
+        label="Unduh Data Seimbang",
+        data=data3.to_csv(index=False),
+        file_name="milk_quality_imbalance.csv",
+        key="download_imbalance_data",
+    )
+
 
 # Page: Modelling
 if selected2 == 'Modelling':
