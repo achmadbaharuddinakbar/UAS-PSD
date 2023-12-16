@@ -3,7 +3,7 @@ import pandas as pd
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
-selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
+selected2 = st.sidebar.selectbox("Navigation", ["Dataset", "Processing data", "Modelling", "Model Validation", "Implementasi", "About Us"])
     icons=['house', 'cloud-upload', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
@@ -133,30 +133,9 @@ if selected2 == 'Model Validation':
 
 
 # Page: Implementasi
-if (selected2 == 'Implementasi') :
-    st.title('Klasifikasi Kualitas Susu')
-    st.write('Untuk mengetahui Kualitas pada Susu')
-   
+if selected2 == 'Implementasi':
+    # ... (same as your existing code)
 
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        ph = st.number_input('Silahkan Masukkan pH:')
-        temprature = st.number_input('Silahkan Masukkan Suhu:', 0)
-
-    with col2:
-        list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
-        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
-        list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
-        fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
-
-    with col3:
-        list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
-        turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
-        colour = st.number_input('Silahkan Masukkan Warna:', 0)
-
-    button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
-    
     if button:
         if odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
             # Mengubah kategori menjadi angka biner
@@ -164,30 +143,28 @@ if (selected2 == 'Implementasi') :
                 odor = 1
             elif odor == 'Buruk':
                 odor = 0
-    
+
             if fat == 'Rendah':
                 fat = 0
             elif fat == 'Tinggi':
                 fat = 1
-    
+
             if turbidity == 'Rendah':
                 turbidity = 0
             elif turbidity == 'Tinggi':
                 turbidity = 1
-    
+
             # Normalisasi fitur-fitur
             ph = ((ph - 3) / (9.5 - 3)) * (1 - 0) + 0
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
-    
+
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
-            import pickle
-            with open('milk.pkl', 'rb') as read:
-                decision_tree_model = pickle.load(read)
-    
+            decision_tree_model = load_model(milk.pkl)  # Load the model using the function you've defined
+
             # Remove 'taste' column from the input features
             cek = decision_tree_model.predict([[ph, temprature, odor, fat, turbidity, colour]])
-    
+
             # Menampilkan hasil prediksi
             for prediksi in cek:
                 st.write('Kualitas Susu Anda', prediksi)
