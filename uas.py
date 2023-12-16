@@ -176,14 +176,8 @@ if (selected2 == 'About Us') :
     st.write('Mata Kuliah : Proyek Sains Data (C)')
 
     data8 = {
-                 'Susu': [' A', ' B', ' C'],
-                 'PH': [6.8, 6.5, 6.5],
-                 'Temperature': [45, 40, 45.0],
-                 'Odor': [1, 1, 0],
-                 'Fat': [1, 0, 0],
-                 'Tutbidity': [1, 1, 0],
-                 'Colour': [255, 255, 255],
-                 'Prediction': [0, 1, 2],
+                 'Nama Anggota Kelompok': [' Achmad Baharudin Akbar', ' Mohammad Iqbal Surya Ramadhan', ' Arif Hidayahtullah', 'Ainur Rifqi'],
+                 'NIM': [210411100001, 210411100002, 210411100012, 210411100236],
     }
         
     table = st.table(data8)
