@@ -3,7 +3,7 @@ import pandas as pd
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
-selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation"], 
+selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
     icons=['house', 'cloud-upload', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
@@ -171,11 +171,21 @@ if (selected == 'Implementasi') :
         else:
             st.write('ISI KOLOM TERLEBIH DAHULU')
             
-if (selected == 'Profil') :
-    st.title('My Profile')
-    st.write('Nama : Arif Hidayatullah')
-    st.write('NIM : 210411100012')
-    st.write('Kelas : Penambangan Data (C)')
+if (selected == 'About Us') :
+    st.title('Kelompok 7')
+    st.write('Mata Kuliah : Proyek Sains Data (C)')
+
+    data8 = {
+                 'Nama :': [' Nim :'],
+                 'Achamad Baharudin Akbar': [210411100001],
+                 'Mohammad Iqal Surya Ramadhan': [210411100002],
+                 'Arif Hidayahtullah': [210411100012],
+                 'Ainur Rifqi': [210411100236],
+    }
+        
+    table = st.table(data8)
+
+    
 
 # Uncomment and complete the code if needed
 # def calculate_risk(age, sex, blood_pressure, cholesterol, ratio, drug_type):
