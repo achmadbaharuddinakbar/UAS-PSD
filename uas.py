@@ -188,10 +188,10 @@ if (selected2 == 'Implementasi') :
             import pickle
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
             with open('milk.pkl', 'rb') as read:
-                clf = pickle.load(read)
+                clf_no_balance = pickle.load(read)
                 
             # Remove 'taste' column from the input features
-            cek = clf.predict([[ph, temprature, odor, fat, turbidity, colour]])
+            cek = clf_no_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
             # Menampilkan hasil prediksi
             for prediksi in cek:
