@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import joblib
 from streamlit_option_menu import option_menu
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
@@ -184,9 +183,10 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
+            import pickle
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
-            with open('milk.pkl', 'rb') as model_file:
-                decision_tree_model = pickle.load(model_file)
+            with open('milk.pkl', 'rb') as read:
+                decision_tree_model = pickle.load(read)
                 
             # Remove 'taste' column from the input features
             cek = decision_tree_model.predict([[ph, temprature, odor, fat, turbidity, colour]])
