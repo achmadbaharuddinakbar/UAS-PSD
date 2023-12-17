@@ -66,7 +66,7 @@ if (selected == 'Modelling') :
     y = dt['Grade']
     genre = st.radio(
         "Pilih Model : ",
-        ('Naive Bayes','Decision Tree','ANN','KNN')
+        ('Decision Tree')
     )
     from sklearn.model_selection import train_test_split
     from sklearn.tree import DecisionTreeClassifier
