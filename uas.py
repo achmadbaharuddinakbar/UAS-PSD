@@ -98,8 +98,9 @@ if (selected == 'Implementasi') :
     col1,col2,col3 = st.columns(3)
     with col1:
         ph = st.number_input('Silahkan Masukkan pH  :')
-        temprature = st.number_input('Silahkan Masukkan Suhu  :')
+        
     with col2:
+        temprature = st.number_input('Silahkan Masukkan Suhu  :')
         list_odor = ['Silahkan Pilih Bau ','Baik','Buruk']
         odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
         list_fat = ['Silahkan Pilih Lemak ','Rendah','Tinggi']
