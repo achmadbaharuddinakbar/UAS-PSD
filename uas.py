@@ -7,6 +7,12 @@ from streamlit_option_menu import option_menu
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+
+# Save the model
+joblib.dump(clf, 'milk.joblib')
+
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
     icons=['house', 'cloud-upload', 'list-task', 'list-task', 'gear', 'people'], 
