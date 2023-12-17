@@ -73,8 +73,7 @@ if (selected == 'Modelling') :
     from sklearn.metrics import accuracy_score
     from sklearn.metrics import confusion_matrix
    if genre == 'Decision Tree':
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=42)
-        from sklearn.tree import DecisionTreeClassifier
+        X_train_balance, X_test_balance, y_train_balance, y_test_balance = train_test_split(X_balance, y_balance, test_size = 0.2, random_state=42)
         clf_balance = DecisionTreeClassifier
         clf_balance.fit(X_train_balance, y_train_balance)
         y_pred_balance = clf_balance.predict(X_test_balance)
