@@ -1,3 +1,4 @@
+from prediction import predict
 import joblib
 import streamlit as st
 import pandas as pd
