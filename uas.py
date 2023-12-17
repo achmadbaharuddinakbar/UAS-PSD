@@ -187,7 +187,7 @@ if (selected2 == 'Implementasi') :
 
             import pickle
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
-            with open('milk--.pkl', 'rb') as read:
+            with open('milk.pkl', 'rb') as read:
                 clf_no_balance = pickle.load(read)
                 
             # Remove 'taste' column from the input features
