@@ -146,19 +146,19 @@ if (selected2 == 'Implementasi') :
 
     with col1:
         ph = st.number_input('Silahkan Masukkan pH:')
-        list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
-        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
+        temprature = st.number_input('Silahkan Masukkan Suhu:')
         list_taste = ['Silahkan Pilih Rasa ','Baik','Buruk']
         taste = st.selectbox('Silahkan Pilih Rasa ', list_taste)
     with col2:
-        temprature = st.number_input('Silahkan Masukkan Suhu:')
+        list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
+        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
         list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
         fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
 
     with col3:
-        colour = st.number_input('Silahkan Masukkan Warna:')
         list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
         turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
+        colour = st.number_input('Silahkan Masukkan Warna:')
 
     button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
