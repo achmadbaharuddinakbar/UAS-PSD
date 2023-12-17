@@ -137,7 +137,7 @@ if (selected2 == 'Model Validation') :
     st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
 
 import joblib
-clf = joblib.load(“rf_model.sav”)
+clf = joblib.load('rf_model.sav')
 
 # Page: Implementasi
 if (selected2 == 'Implementasi') :
