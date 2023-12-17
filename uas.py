@@ -185,8 +185,10 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
-            import pickle
-            clf = joblib.load('milk.joblib')
+            try:
+                clf = joblib.load('milk.joblib')
+            except Exception as e:
+                st.error(f"Error loading the model: {e}")
                 
             # Remove 'taste' column from the input features
             cek = clf.predict([[ph, temprature, odor, fat, turbidity, colour]])
