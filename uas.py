@@ -131,7 +131,7 @@ if (selected == 'Implementasi') :
             colour=((colour-0)/(1-0))*(1-0)+0
             #st.write(ph,temprature,taste,odor,fat,turbidity,colour)
             import pickle
-            with open('milk.pkl','rb') as read:
+            with open('milk.pkl','wb') as read:
                 clf_no_balance=pickle.load(read)
             cek=clf_no_balance.predict([[ph,temprature,odor,fat,turbidity,colour]])
             for prediksi in cek:
