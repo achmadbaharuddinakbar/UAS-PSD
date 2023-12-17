@@ -136,9 +136,6 @@ if (selected2 == 'Model Validation') :
     st.write('Susu B diprediksi memiliki kualitas 1 (Low)')
     st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
 
-import joblib
-clf = joblib.load('rf_model.sav')
-
 # Page: Implementasi
 if (selected2 == 'Implementasi') :
     st.title('Klasifikasi Kualitas Susu')
@@ -187,8 +184,8 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
-            # try:
-            #     clf = joblib.load('milk.joblib')
+            try:
+                clf = joblib.load('milk.joblib')
             # except Exception as e:
             #     st.error(f"Error loading the model: {e}")
                 
