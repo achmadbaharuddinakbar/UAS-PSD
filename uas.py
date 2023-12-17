@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
-    icons=['house', 'cloud-upload', 'list-task', 'gear'], 
+    icons=['house', 'cloud-upload', 'list-task', 'gear', 'gear', 'profile'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 # Page: Dataset
