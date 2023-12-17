@@ -1,5 +1,4 @@
 import joblib
-import os
 import streamlit as st
 import pandas as pd
 import pickle
@@ -187,9 +186,11 @@ if (selected2 == 'Implementasi') :
             colour = ((colour - 1) / (1 - 0)) * (1 - 0) + 0
 
             import pickle
-            with open('milk.pkl','rb') as read:
-                clf_no_balance=pickle.load(read)
+            # Melakukan prediksi dengan model Decision Tree yang telah disimpan
+            with open('milk.pkl', 'rb') as read:
+                clf_no_balance = pickle.load(read)
                 
+            # Remove 'taste' column from the input features
             cek = clf_no_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
             # Menampilkan hasil prediksi
