@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import pickle
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
