@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import MinMaxScaler
 from streamlit_option_menu import option_menu
 import pandas as pd
@@ -61,24 +61,52 @@ if (selected == 'Preprocessing') :
 
 if (selected == 'Modelling') :
     st.title('Metode dan Hasil Akurasi')
-    dt = pd.read_csv('milk_quality_imbalanced.csv')
+    dt = pd.read_csv('milknew.csv')
     X = dt.drop(['Grade'], axis=1)
     y = dt['Grade']
     genre = st.radio(
         "Pilih Model : ",
-        ('Decision Tree','knn')
+        ('Naive Bayes','Decision Tree','ANN','KNN')
     )
     from sklearn.model_selection import train_test_split
-    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.naive_bayes import GaussianNB
     from sklearn.metrics import accuracy_score
     from sklearn.metrics import confusion_matrix
-    if  genre == 'Decision Tree':
-        X_train_balance, X_test_balance, y_train_balance, y_test_balance = train_test_split(X_balance, y_balance, test_size = 0.2, random_state=42)
-        clf_balance = DecisionTreeClassifier
-        clf_balance.fit(X_train_balance, y_train_balance)
-        y_pred_balance = clf_balance.predict(X_test_balance)
+    if genre == 'Naive Bayes':
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=42)
+        classifier = GaussianNB()
+        classifier.fit(X_train, y_train)
+        y_pred = classifier.predict(X_test) 
         from sklearn.metrics import confusion_matrix
-        st.write('Accuracy Pohon Keputusan : ',confusion_matrix(y_test_balance, y_pred_balance))
+        cm = confusion_matrix(y_test, y_pred)
+        from sklearn.metrics import accuracy_score
+        st.write("Accuracy Naive Bayes : ", accuracy_score(y_test, y_pred))
+    if genre == 'Decision Tree':
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=42)
+        from sklearn.tree import DecisionTreeClassifier
+        clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
+        clf_gini.fit(X_train, y_train)
+        y_pred_gini = clf_gini.predict(X_test)
+        from sklearn.metrics import accuracy_score
+        st.write('Accuracy Pohon Keputusan : ',accuracy_score(y_test, y_pred_gini))
+    if genre == 'ANN':
+        X_train, X_test, y_train, y_test = train_test_split(X,y, test_size= 0.2, random_state=42)
+        from sklearn.neural_network import MLPClassifier
+        clf = MLPClassifier(hidden_layer_sizes=(100,100,100), max_iter=1000, alpha=0.0001,
+                     solver='sgd', verbose=10,  random_state=21,tol=0.001)
+        clf.fit(X_train, y_train)
+        y_pred=clf.predict(X_test)
+        st.write('Accuracy ANN : ',accuracy_score(y_test, y_pred))
+    if genre == 'KNN':
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        from sklearn.neighbors import KNeighborsClassifier
+        knn = KNeighborsClassifier(n_neighbors=1, metric="euclidean")
+        knn.fit(X_train, y_train)
+        y_pred = knn.predict(X_test)
+        from sklearn.metrics import confusion_matrix
+        accuracy = accuracy_score(y_test, y_pred)
+        from sklearn.metrics import accuracy_score
+        st.write('Accuracy KNN : ',accuracy)
 
     #import pickle
     #filename='milkquality.pkl'
@@ -98,21 +126,27 @@ if (selected == 'Implementasi') :
     col1,col2,col3 = st.columns(3)
     with col1:
         ph = st.number_input('Silahkan Masukkan pH  :')
+        temprature = st.number_input('Silahkan Masukkan Suhu  :',0)
+        list_taste = ['Silahkan Pilih Rasa ','Baik','Buruk']
+        taste = st.selectbox('Silahkan Pilih Rasa ', list_taste)
+    with col2:
         list_odor = ['Silahkan Pilih Bau ','Baik','Buruk']
         odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
-    with col2:
-        temprature = st.number_input('Silahkan Masukkan Suhu  :')
         list_fat = ['Silahkan Pilih Lemak ','Rendah','Tinggi']
         fat = st.selectbox('Silahkan Pilih Lemak ', list_fat)
     with col3:
-        colour = st.number_input('Silahkan Masukkan Warna  :')
         list_turbidity = ['Silahkan Pilih Kekeruhan ','Rendah','Tinggi']
         turbidity = st.selectbox('Silahkan Pilih Kekeruhan ', list_turbidity)
+        colour = st.number_input('Silahkan Masukkan Warna  :',0)
 
     button = st.button('Cek Kualitas Susu', use_container_width = 500, type = 'primary')
 
     if button:
-        if odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
+        if taste != 'Silahkan Pilih' and odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
+            if taste=='Baik':
+                taste=1
+            if taste=='Buruk':
+                taste=0
             if odor=='Baik':
                 odor=1
             if odor=='Buruk':
@@ -126,14 +160,14 @@ if (selected == 'Implementasi') :
             if turbidity=='Tinggi':
                 turbidity=1
             
-            ph=((ph-0)/(1-0))*(1-0)+0
-            temprature=((temprature-0)/(1-0))*(1-0)+0
-            colour=((colour-0)/(1-0))*(1-0)+0
+            ph=((ph-3)/(9.5-3))*(1-0)+0
+            temprature=((temprature-34)/(90-34))*(1-0)+0
+            colour=((colour-240)/(255-240))*(1-0)+0
             #st.write(ph,temprature,taste,odor,fat,turbidity,colour)
             import pickle
-            with open('milk.pkl','wb') as read:
-                clf_no_balance=pickle.load(read)
-            cek=clf_no_balance.predict([[ph,temprature,odor,fat,turbidity,colour]])
+            with open('milkquality.pkl','rb') as read:
+                clf=pickle.load(read)
+            cek=clf.predict([[ph,temprature,taste,odor,fat,turbidity,colour]])
             for prediksi in cek:
                 st.write('Kualitas Susu Anda ',prediksi)
         else:
