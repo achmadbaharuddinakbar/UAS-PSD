@@ -5,6 +5,7 @@ import pickle
 from streamlit_option_menu import option_menu
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
@@ -146,17 +147,18 @@ if (selected2 == 'Implementasi') :
 
     with col1:
         ph = st.number_input('Silahkan Masukkan pH:')
-        temprature = st.number_input('Silahkan Masukkan Suhu:',0)
-    with col2:
         list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
         odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
+    with col2:
+        temprature = st.number_input('Silahkan Masukkan Suhu:')
         list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
         fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
 
     with col3:
+        colour = st.number_input('Silahkan Masukkan Warna:')
         list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
         turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
-        colour = st.number_input('Silahkan Masukkan Warna:',0)
+
 
     button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
