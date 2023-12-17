@@ -5,3 +5,4 @@ scikit-learn
 pip==23.1.2
 numpy==1.24.3
 streamlit_option_menu
+joblib==1.3.2
