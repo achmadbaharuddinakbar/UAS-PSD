@@ -61,7 +61,7 @@ if (selected == 'Preprocessing') :
 
 if (selected == 'Modelling') :
     st.title('Metode dan Hasil Akurasi')
-    dt = pd.read_csv('milknew.csv')
+    dt = pd.read_csv('milk_quality_imbalanced.csv')
     X = dt.drop(['Grade'], axis=1)
     y = dt['Grade']
     genre = st.radio(
