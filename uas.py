@@ -182,8 +182,9 @@ if (selected2 == 'Implementasi') :
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
-            decision_tree_model = load_model(milk.pkl)  # Load the model using the function you've defined
-
+            with open('milk.pkl', 'rb') as model_file:
+                decision_tree_model = pickle.load(model_file)
+                
             # Remove 'taste' column from the input features
             cek = decision_tree_model.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
