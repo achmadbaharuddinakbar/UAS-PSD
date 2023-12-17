@@ -114,7 +114,7 @@ if (selected == 'Implementasi') :
     button = st.button('Cek Kualitas Susu', use_container_width = 500, type = 'primary')
 
     if button:
-        if taste != 'Silahkan Pilih' odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
+        if taste != 'Silahkan Pilih' and odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
             if taste=='Baik':
                 taste=1
             if taste=='Buruk':
