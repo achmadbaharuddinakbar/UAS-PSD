@@ -6,7 +6,6 @@ import pickle
 from streamlit_option_menu import option_menu
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
-from uas import predict
 
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
