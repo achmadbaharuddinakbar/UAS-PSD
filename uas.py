@@ -187,8 +187,14 @@ if (selected2 == 'Implementasi') :
             colour = ((colour - 1) / (1 - 0)) * (1 - 0) + 0
 
             import pickle
-            with open('milk.pkl','rb') as read:
-                clf_no_balance=pickle.load(read)
+            with open('milk.pkl', 'rb') as read:
+                try:
+                    clf_no_balance = pickle.load(read)
+                    st.write("Loaded model successfully.")
+                    st.write("Model attributes:", clf_no_balance.__dict__)
+                except Exception as e:
+                    st.write("Error loading model:", e)
+
             # Remove 'taste' column from the input features
             cek = clf_no_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
