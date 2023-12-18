@@ -190,7 +190,7 @@ if (selected2 == 'Implementasi') :
             #     st.error(f"Error loading the model: {e}")
                 
             # Remove 'taste' column from the input features
-            cek = clf.predict([[ph, temprature, odor, fat, turbidity, colour]])
+            cek = clf.predict([ph, temprature, odor, fat, turbidity, colour])
 
             # Menampilkan hasil prediksi
             for prediksi in cek:
