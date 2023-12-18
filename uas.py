@@ -146,18 +146,18 @@ if (selected2 == 'Implementasi') :
 
     with col1:
         ph = st.number_input('Silahkan Masukkan pH:')
-        temprature = st.number_input('Silahkan Masukkan Suhu:', 0)
-
-    with col2:
         list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
         odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
+
+    with col2:
+        temprature = st.number_input('Silahkan Masukkan Suhu:')
         list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
         fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
 
     with col3:
+        colour = st.number_input('Silahkan Masukkan Warna:')
         list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
         turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
-        colour = st.number_input('Silahkan Masukkan Warna:', 0)
 
     button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
@@ -180,9 +180,9 @@ if (selected2 == 'Implementasi') :
                 turbidity = 1
 
             # Normalisasi fitur-fitur
-            ph = ((ph - 3) / (9.5 - 3)) * (1 - 0) + 0
-            temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
-            colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
+            ph = ((ph - 1) / (0 - 1)) * (1 - 0) + 0
+            temprature = ((temprature - 1) / (0 - 1)) * (1 - 0) + 0
+            colour = ((colour - 1) / (0 - 1)) * (1 - 0) + 0
 
             import pickle
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
