@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import requests
-from io import BytesIO
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
@@ -134,16 +132,6 @@ if (selected2 == 'Model Validation') :
     st.write('Susu B diprediksi memiliki kualitas 1 (Low)')
     st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
 
-# Function to load pickle from GitHub
-def load_pickle_from_github(url):
-    response = requests.get(url)
-    if response.status_code == 200:
-        return pickle.load(BytesIO(response.content))
-    else:
-        st.error(f"Failed to load pickle file from GitHub. Status Code: {response.status_code}")
-        return None
-
-github_pickle_url = 'https://github.com/achmadbaharuddinakbar/UAS-PSD/raw/main/milk.pkl'
 
 # Page: Implementasi
 if (selected2 == 'Implementasi') :
@@ -193,12 +181,13 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 1) / (0 - 1)) * (1 - 0) + 0
             colour = ((colour - 1) / (0 - 1)) * (1 - 0) + 0
 
- # Load the model from GitHub
-            clf_balance = load_pickle_from_github(github_pickle_url)
-
-            if clf_balance is not None:
-                # Remove 'taste' column from the input features
-                cek = clf_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
+            import pickle
+            # Melakukan prediksi dengan model Decision Tree yang telah disimpan
+            with open('milk.pkl', 'rb') as file:
+                clf_balance = pickle.load(file)
+                
+            # Remove 'taste' column from the input features
+            cek = clf_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
             # Menampilkan hasil prediksi
             for prediksi in cek:
@@ -229,5 +218,5 @@ if (selected2 == 'About Us')  :
 #     ...
 
 # Uncomment and complete the code if needed
-# if _name_ == "_main_":
+# if name == "main":
 #     main()
