@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 from streamlit_option_menu import option_menu
-from sklearn import tree
-from sklearn.tree import DecisionTreeClassifier
 
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
@@ -185,8 +183,7 @@ if (selected2 == 'Implementasi') :
 
             import pickle
             # Melakukan prediksi dengan model Decision Tree yang telah disimpan
-            model_path="milk.pkl"
-            with open(model_path, 'rb') as file:
+            with open('milk.pkl', 'rb') as file:
                 clf_balance = pickle.load(file)
                 
             # Remove 'taste' column from the input features
