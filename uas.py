@@ -1,7 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
-import numpy as pd
+import numpy as np
 import pickle
 from streamlit_option_menu import option_menu
 from sklearn import tree
