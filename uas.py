@@ -1,31 +1,19 @@
+import joblib
 import streamlit as st
-from PIL import Image
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import MinMaxScaler
-from streamlit_option_menu import option_menu
 import pandas as pd
-import numpy as np
+import pickle
+from streamlit_option_menu import option_menu
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
 
-selected = option_menu(
-    menu_title=None,
-    options=['Data','Preprocessing','Modelling','Implementasi','Profil'],
-    orientation='horizontal',
-    menu_icon=None,
-    default_index=0,
-    styles={
-        "nav-link":{
-        "font-size":"11.5px",
-        "text-align":"center",
-        "margin":"5px",
-        "--hover-color":"#eee",},
-        "nav-link-selected":{
-        "background-color":"red"},
-    }
-)
+# Navigation sidebar
+selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
+    icons=['house', 'cloud-upload', 'list-task', 'list-task', 'gear', 'people'], 
+    menu_icon="cast", default_index=0, orientation="horizontal")
 
-dt = pd.read_csv('milknew.csv')
-if (selected == 'Data') :
-    st.title('Deskripsi Data')
+# Page: Dataset
+if (selected2 == 'Dataset') :
+    st.title('Deskripsi data')
     st.write('Untuk mengetahui Kualitas pada Susu')
     st.write('Data yang saya gunakan disini yaitu tentang Prediksi Kualitas Susu yang saya dapatkan dari kaggle : https://www.kaggle.com/datasets/cpluzshrijayan/milkquality')
     st.write('Data Kualitas Susu ini merupakan Type Data Numerical.')
@@ -40,113 +28,198 @@ if (selected == 'Data') :
     st.write('6. Turbidity : variabel ini mendefinisikan Kekeruhan susu yang merupakan data kategorikal 0 (Rendah) atau 1 (Tinggi) maks : 1 (Tinggi)')
     st.write('7. Color : variabel ini menentukan Warna susu yang berkisar dari 240 hingga 255 maks : 255')
     st.write('8. Grade : variabel ini mendefinisikan Grade (Target) susu yang merupakan data kategori Dimana Low (Buruk) atau Medium (Sedang) atau High (Baik)')
-    dt
 
-if (selected == 'Preprocessing') :
-    st.title(' Preprocessing')
-    from sklearn.preprocessing import MinMaxScaler
-    st.write('Data Asli')
-    dt = pd.read_csv('milknew.csv')
-    dt
-    st.write('Normalisasi Data Menggunkan Min-Max')
-    #memilih kolom yang akan di normalisasi
-    minmax=['pH','Temprature','Colour']
-    #membuat objek scaler Min-Max
-    scaler_minmax=MinMaxScaler()
-    #melakukan normalisasi pada kolom yang dipilih
-    dt[minmax]=scaler_minmax.fit_transform(dt[minmax])
-    dt
-    #menampilkan data yang sudah di normalisasi
-    dt.to_csv('milkquality_minmax.csv')
+    data1 = pd.read_csv('milknew.csv')
+    st.write(data1)
 
-if (selected == 'Modelling') :
-    st.title('Metode dan Hasil Akurasi')
-    dt = pd.read_csv('milk_quality_imbalanced.csv')
-    X = dt.drop(['Grade'], axis=1)
-    y = dt['Grade']
-    genre = st.radio(
-        "Pilih Model : ",
-        ('Decision Tree','knn')
+# Page: Processing data
+if (selected2 == 'Processing data') :
+    st.title('Processing Data imbalanced (Tidak Seimbang)')
+    st.write("Pre-processing imbalanced data")
+    st.write("Dengan Hasil :")
+    data2 = pd.read_csv('milk_quality_non-imbalance.csv')
+    st.write(data2)
+    
+    # Tombol unduh untuk data tidak seimbang
+    st.download_button(
+        label="Unduh Data Tidak Seimbang",
+        data=data2.to_csv(index=False),
+        file_name="milk_quality_non-imbalance.csv",
+        key="download_non_imbalance_data",
     )
-    from sklearn.model_selection import train_test_split
-    from sklearn.tree import DecisionTreeClassifier
-    from sklearn.metrics import accuracy_score
-    from sklearn.metrics import confusion_matrix
-    if  genre == 'Decision Tree':
-        X_train_balance, X_test_balance, y_train_balance, y_test_balance = train_test_split(X_balance, y_balance, test_size = 0.2, random_state=42)
-        clf_balance = DecisionTreeClassifier
-        clf_balance.fit(X_train_balance, y_train_balance)
-        y_pred_balance = clf_balance.predict(X_test_balance)
-        from sklearn.metrics import confusion_matrix
-        st.write('Accuracy Pohon Keputusan : ',confusion_matrix(y_test_balance, y_pred_balance))
 
-    #import pickle
-    #filename='milkquality.pkl'
-    #pickle.dump(classifier,open(filename,'wb'))
+    st.title('Processing Data')
+    st.write("Pre-processing balanced Data")
+    st.write("Dengan Hasil :")
+    data3 = pd.read_csv('milk_quality_imbalance.csv')
+    st.write(data3)
+    
+    # Tombol unduh untuk data seimbang
+    st.download_button(
+        label="Unduh Data Seimbang",
+        data=data3.to_csv(index=False),
+        file_name="milk_quality_imbalance.csv",
+        key="download_imbalance_data",
+    )
 
-    #import os
-    #print(os.getcwd())
 
-    #from google.colab import files
-    #files.download('milkquality.pkl')
+# Page: Modelling
+if  selected2 == 'Modelling' :
+    st.title('Modelling')
+    st.write('Modelling')
+    pilih = st.radio('Pilih', ('Balanced Data', 'Imbalanced Data'))
 
-if (selected == 'Implementasi') :
+    if pilih == 'Balanced Data':
+        st.title('Nilai Akurasi 100 %')
+        st.write('Performa model dengan kelas seimbang (Balanced data)')
+    
+        data4 = {
+            '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
+            'Precision': [0.99, 1.00, 1.00, '', 1.00, 1.00],
+            'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
+            'F1-Score': [0.99, 1.00, 0.99, 1.00, 1.00, 1.00],
+            'Support': [95, 73, 90, 258, 258, 258]
+        }
+    
+        table = st.table(data4)
+    
+    elif pilih == 'Imbalanced Data':
+         st.title('Nilai Akurasi 100 %')
+         st.write('Performa model dengan kelas tidak seimbang (Imbalanced data)')
+    
+         data5 = {
+             '': [' 0', ' 1', ' 2', 'Accuracy', 'Macro Avg', 'Weighted Avg'],
+             'Precision': [0.98, 1.00, 1.00, '', 0.99, 1.00],
+             'Recall': [1.00, 1.00, 0.99, '', 1.00, 1.00],
+             'F1-Score': [0.99, 1.00, 0.99, 1.00, 0.99, 1.00],
+             'Support': [44, 92, 76, 212, 212, 212]
+         }
+    
+         table = st.table(data5)
+
+
+if (selected2 == 'Model Validation') :
+    st.title('Model Validation')
+    st.write('Selanjutnya menguji model dengan memprediksikan kualitas suatu susu dengan spesifikasi berikut:')
+    
+    data6 = {
+                 '': [' A', ' B', ' C'],
+                 'PH': [6.8, 6.5, 6.5],
+                 'Temperature': [45, 40, 45.0],
+                 'Odor': [1, 1, 0],
+                 'Fat': [1, 0, 0],
+                 'Tutbidity': [1, 1, 0],
+                 'Colour': [255, 255, 255],
+    }
+        
+    table = st.table(data6)
+
+    st.write('NB: Variabel Taste telah dihapus karena memiliki nilai information gain terkecil yaitu sebesar 0.04, yang artinya variabel tersebut tidak memberikan informasi yang signifikan untuk membedakan kelas target.')
+
+    st.title('Hasil Memprediksi Target Menggunakan Model Terlatih')
+    
+    data7 = {
+                 'Susu': [' A', ' B', ' C'],
+                 'PH': [6.8, 6.5, 6.5],
+                 'Temperature': [45, 40, 45.0],
+                 'Odor': [1, 1, 0],
+                 'Fat': [1, 0, 0],
+                 'Tutbidity': [1, 1, 0],
+                 'Colour': [255, 255, 255],
+                 'Prediction': [0, 1, 2],
+    }
+        
+    table = st.table(data7)
+
+    st.write('Susu A diprediksi memiliki kualitas 0 (High)')
+    st.write('Susu B diprediksi memiliki kualitas 1 (Low)')
+    st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
+
+
+# Page: Implementasi
+if (selected2 == 'Implementasi') :
     st.title('Klasifikasi Kualitas Susu')
     st.write('Untuk mengetahui Kualitas pada Susu')
-   
 
-    col1,col2,col3 = st.columns(3)
+    
+    col1, col2, col3 = st.columns(3)
+
     with col1:
-        ph = st.number_input('Silahkan Masukkan pH  :')
-        list_odor = ['Silahkan Pilih Bau ','Baik','Buruk']
-        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
-        list_taste = ['Silahkan Pilih Rasa ','Baik','Buruk']
-        taste = st.selectbox('Silahkan Pilih Rasa ', list_taste)
-    with col2:
-        temprature = st.number_input('Silahkan Masukkan Suhu  :')
-        list_fat = ['Silahkan Pilih Lemak ','Rendah','Tinggi']
-        fat = st.selectbox('Silahkan Pilih Lemak ', list_fat)
-    with col3:
-        colour = st.number_input('Silahkan Masukkan Warna  :')
-        list_turbidity = ['Silahkan Pilih Kekeruhan ','Rendah','Tinggi']
-        turbidity = st.selectbox('Silahkan Pilih Kekeruhan ', list_turbidity)
+        ph = st.number_input('Silahkan Masukkan pH:')
+        temprature = st.number_input('Silahkan Masukkan Suhu:', 0)
 
-    button = st.button('Cek Kualitas Susu', use_container_width = 500, type = 'primary')
+    with col2:
+        list_odor = ['Silahkan Pilih Bau', 'Baik', 'Buruk']
+        odor = st.selectbox('Silahkan Pilih Bau susu', list_odor)
+        list_fat = ['Silahkan Pilih Lemak', 'Rendah', 'Tinggi']
+        fat = st.selectbox('Silahkan Pilih Lemak', list_fat)
+
+    with col3:
+        list_turbidity = ['Silahkan Pilih Kekeruhan', 'Rendah', 'Tinggi']
+        turbidity = st.selectbox('Silahkan Pilih Kekeruhan', list_turbidity)
+        colour = st.number_input('Silahkan Masukkan Warna:', 0)
+
+    button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
     if button:
-        if taste != 'Silahkan Pilih' and odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
-            if taste=='Baik':
-                taste=1
-            if taste=='Buruk':
-                taste=0
-            if odor=='Baik':
-                odor=1
-            if odor=='Buruk':
-                odor=0
-            if fat=='Rendah':
-                fat=0
-            if fat=='Tinggi':
-                fat=1
-            if turbidity=='Rendah':
-                turbidity=0
-            if turbidity=='Tinggi':
-                turbidity=1
-            
-            ph=((ph-3)/(9.5-3))*(1-0)+0
-            temprature=((temprature-34)/(90-34))*(1-0)+0
-            colour=((colour-240)/(255-240))*(1-0)+0
-            #st.write(ph,temprature,taste,odor,fat,turbidity,colour)
+        if odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
+            # Mengubah kategori menjadi angka biner
+            if odor == 'Baik':
+                odor = 1
+            elif odor == 'Buruk':
+                odor = 0
+
+            if fat == 'Rendah':
+                fat = 0
+            elif fat == 'Tinggi':
+                fat = 1
+
+            if turbidity == 'Rendah':
+                turbidity = 0
+            elif turbidity == 'Tinggi':
+                turbidity = 1
+
+            # Normalisasi fitur-fitur
+            ph = ((ph - 3) / (9.5 - 3)) * (1 - 0) + 0
+            temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
+            colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
+
             import pickle
-            with open('milk.pkl','rb') as read:
-                clf_balance=pickle.load(read)
-            cek=clf_balance.predict([[ph,temprature,odor,fat,turbidity,colour]])
+            # Melakukan prediksi dengan model Decision Tree yang telah disimpan
+            with open('milk.pkl', 'rb') as read:
+                clf_balance = pickle.load(read)
+                
+            # Remove 'taste' column from the input features
+            cek = clf_balance.predict([[ph, temprature, odor, fat, turbidity, colour]])
+
+            # Menampilkan hasil prediksi
             for prediksi in cek:
-                st.write('Kualitas Susu Anda ',prediksi)
+                st.write('Kualitas Susu Anda', prediksi)
         else:
             st.write('ISI KOLOM TERLEBIH DAHULU')
+
             
-if (selected == 'Profil') :
-    st.title('My Profile')
-    st.write('Nama : Arif Hidayatullah')
-    st.write('NIM : 210411100012')
-    st.write('Kelas : Penambangan Data (C)')
+if (selected2 == 'About Us')  :
+    st.title('Kelompok 7')
+    st.write('Mata Kuliah : Proyek Sains Data (C)')
+
+    data8 = {
+                 'Nama Anggota Kelompok': [' Achmad Baharudin Akbar', ' Mohammad Iqbal Surya Ramadhan', ' Arif Hidayahtullah', 'Ainur Rifqi'],
+                 'NIM': [210411100001, 210411100002, 210411100012, 210411100236],
+    }
+        
+    table = st.table(data8)
+
+    
+
+# Uncomment and complete the code if needed
+# def calculate_risk(age, sex, blood_pressure, cholesterol, ratio, drug_type):
+#     ...
+
+# Uncomment and complete the code if needed
+# def main():
+#     ...
+
+# Uncomment and complete the code if needed
+# if _name_ == "_main_":
+#     main()
