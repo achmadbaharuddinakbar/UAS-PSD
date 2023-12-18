@@ -109,7 +109,7 @@ if (selected2 == 'Model Validation') :
                  'Temperature': [45, 40, 45.0],
                  'Odor': [1, 1, 0],
                  'Fat': [1, 0, 0],
-                 'Tutbidity': [1, 1, 0],
+                 'Turbidity': [1, 1, 0],
                  'Colour': [255, 255, 255],
     }
         
@@ -125,7 +125,7 @@ if (selected2 == 'Model Validation') :
                  'Temperature': [45, 40, 45.0],
                  'Odor': [1, 1, 0],
                  'Fat': [1, 0, 0],
-                 'Tutbidity': [1, 1, 0],
+                 'Turbidity': [1, 1, 0],
                  'Colour': [255, 255, 255],
                  'Prediction': [0, 1, 2],
     }
