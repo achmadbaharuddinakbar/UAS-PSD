@@ -184,8 +184,8 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
-            try:
-                clf = joblib.load('milk.joblib')
+
+            clf = joblib.load('milk.joblib')
             # except Exception as e:
             #     st.error(f"Error loading the model: {e}")
                 
