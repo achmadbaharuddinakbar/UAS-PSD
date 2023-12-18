@@ -1,13 +1,11 @@
 import streamlit as st
-import joblib
 import pandas as pd
-import numpy as np
 import pickle
 from streamlit_option_menu import option_menu
 
 # Navigation sidebar
 selected2 = option_menu(None, ["Dataset", "Processing data", "Modelling", "Model Validation","Implementasi","About Us"], 
-    icons=['house', 'cloud-upload', 'list-task', 'list-task', 'gear', 'people'], 
+    icons=['house', 'cloud-upload', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 # Page: Dataset
@@ -107,7 +105,7 @@ if (selected2 == 'Model Validation') :
                  'Temperature': [45, 40, 45.0],
                  'Odor': [1, 1, 0],
                  'Fat': [1, 0, 0],
-                 'Turbidity': [1, 1, 0],
+                 'Tutbidity': [1, 1, 0],
                  'Colour': [255, 255, 255],
     }
         
@@ -123,7 +121,7 @@ if (selected2 == 'Model Validation') :
                  'Temperature': [45, 40, 45.0],
                  'Odor': [1, 1, 0],
                  'Fat': [1, 0, 0],
-                 'Turbidity': [1, 1, 0],
+                 'Tutbidity': [1, 1, 0],
                  'Colour': [255, 255, 255],
                  'Prediction': [0, 1, 2],
     }
@@ -133,6 +131,7 @@ if (selected2 == 'Model Validation') :
     st.write('Susu A diprediksi memiliki kualitas 0 (High)')
     st.write('Susu B diprediksi memiliki kualitas 1 (Low)')
     st.write('Susu C diprediksi memiliki kualitas 2 (Medium)')
+
 
 # Page: Implementasi
 if (selected2 == 'Implementasi') :
@@ -159,7 +158,7 @@ if (selected2 == 'Implementasi') :
 
     button = st.button('Cek Kualitas Susu', use_container_width=500, type='primary')
 
-    if button == True:
+    if button:
         if odor != 'Silahkan Pilih' and fat != 'Silahkan Pilih' and turbidity != 'Silahkan Pilih' and ph != 0 and temprature != 0 and colour != 0:
             # Mengubah kategori menjadi angka biner
             if odor == 'Baik':
@@ -182,13 +181,11 @@ if (selected2 == 'Implementasi') :
             temprature = ((temprature - 34) / (90 - 34)) * (1 - 0) + 0
             colour = ((colour - 240) / (255 - 240)) * (1 - 0) + 0
 
+            # Melakukan prediksi dengan model Decision Tree yang telah disimpan
+            decision_tree_model = load_model(milk.pkl)  # Load the model using the function you've defined
 
-            clf = joblib.load('milk.joblib')
-            # except Exception as e:
-            #     st.error(f"Error loading the model: {e}")
-                
             # Remove 'taste' column from the input features
-            cek = clf.predict([[ph, temprature, odor, fat, turbidity, colour]])
+            cek = decision_tree_model.predict([[ph, temprature, odor, fat, turbidity, colour]])
 
             # Menampilkan hasil prediksi
             for prediksi in cek:
@@ -207,17 +204,3 @@ if (selected2 == 'About Us')  :
     }
         
     table = st.table(data8)
-
-    
-
-# Uncomment and complete the code if needed
-# def calculate_risk(age, sex, blood_pressure, cholesterol, ratio, drug_type):
-#     ...
-
-# Uncomment and complete the code if needed
-# def main():
-#     ...
-
-# Uncomment and complete the code if needed
-# if _name_ == "_main_":
-#     main()
